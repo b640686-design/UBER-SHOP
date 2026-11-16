@@ -18,7 +18,8 @@ const CARD_NUMBER = "4916 9903 1516 3920";
 
 const assets = path.join(__dirname, "assets");
 const welcome = path.join(assets, "welcome.jpg");
-const dbPath = path.join(__dirname, "orders.json");
+const dbPath = path.join(__dirname, "data", "orders.json");
+fs.mkdirSync(path.dirname(dbPath), { recursive: true });
 
 const paynetPhotos = [1, 2, 3, 4].map(
   n => path.join(assets, `paynet${n}.jpg`)
