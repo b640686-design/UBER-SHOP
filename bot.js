@@ -1436,10 +1436,10 @@ function home(name) {
 
 Добро пожаловать в магазин цифровых товаров.
 
-🎮 Robux
-💎 Telegram Premium
-⭐ Telegram Stars
-💳 Пополнение Steam СНГ
+🎮 Robux — со входом
+💎 Telegram Premium - 1мес со входом
+⭐ Telegram Stars — без входа
+💳 Пополнение Steam СНГ — без входа
 💠 BULLDROP — со входом
 
 👇 Выберите категорию.
@@ -1556,7 +1556,7 @@ function productPage(key, index) {
 
 Для оформления потребуются данные получателя.
 
-🔐 Пароли и коды входа не отправляйте.`,
+🔐 Админ может потребовать доступ к акаунту.`,
     keyboard: new InlineKeyboard()
       .text("✅ Оформить", `buy:${key}:${index}`)
       .row()
@@ -1608,7 +1608,7 @@ function bexdPage() {
 
 📧 Для оформления потребуется электронная почта, привязанная к BULLDROP.
 
-🔐 Пароли и коды подтверждения не требуются.
+🔐 Потребуется код подтверждения , не отправляйте коды боту вас попросит админ.
 
 👇 Нажмите кнопку для пополнения.`,
     keyboard: new InlineKeyboard()
@@ -1670,7 +1670,7 @@ function fieldPage(s) {
 
 Например: example@gmail.com
 
-⚠️ Не отправляйте пароль или код входа.`;
+⚠️ Админ может потребовать доступ к акаунту.`;
     } else {
       prompt = "Введите Telegram username получателя.";
     }
@@ -1737,8 +1737,8 @@ function detailsPage(o) {
 
 💰 Сумма пополнения: ${money(o.amount ?? o.price)}
 ${o.type === "bulldrop"
-  ? `➕ Комиссия: ${money(o.fee)}`
-  : ""}
+        ? `➕ Комиссия: ${money(o.fee)}`
+        : ""}
 
 💳 К оплате: ${money(o.price)}
 
@@ -1986,11 +1986,11 @@ function myOrders(userId) {
     text: `📦 МОИ ЗАКАЗЫ
 
 ${list.length
-  ? list.map(o => `🧾 #${o.id}
+        ? list.map(o => `🧾 #${o.id}
 📦 ${o.title}
 💰 ${money(o.price)}
 📌 ${o.status}`).join("\n\n")
-  : "Заказов пока нет."}`,
+        : "Заказов пока нет."}`,
     keyboard: new InlineKeyboard()
       .text("🏠 Главное меню", "home")
   };
@@ -2009,9 +2009,9 @@ function adminText(o) {
 
 📦 ${o.title}
 ${o.type === "bulldrop"
-  ? `💰 Пополнение: ${money(o.amount)}
+      ? `💰 Пополнение: ${money(o.amount)}
 ➕ Комиссия: ${money(o.fee)}`
-  : ""}
+      : ""}
 💳 К оплате: ${money(o.price)}
 
 💳 Способ оплаты: ${o.paymentMethod || "Не указан"}
@@ -2019,9 +2019,8 @@ ${o.type === "bulldrop"
 ${accountLabel}: ${o.account}
 ${o.phone ? `📱 Телефон: ${o.phone}` : ""}
 
-👨‍💼 Покупатель: ${
-  o.username ? "@" + o.username : "Без username"
-}
+👨‍💼 Покупатель: ${o.username ? "@" + o.username : "Без username"
+    }
 
 🆔 Telegram ID: ${o.userId}
 📅 ${o.createdAt}
@@ -2153,9 +2152,8 @@ function statsPage() {
 
 📦 Всего заявок: ${db.orders.length}
 
-🆕 Новые: ${
-  count("Новый") + count("Ожидает проверки")
-}
+🆕 Новые: ${count("Новый") + count("Ожидает проверки")
+      }
 🔄 В работе: ${count("В работе")}
 ✅ Выполнены: ${count("Выполнен")}
 ❌ Отменены: ${count("Отменён")}
@@ -2506,7 +2504,7 @@ bot.on("message:text", async ctx => {
 
 Попробуйте ещё раз.
 
-🔐 Не отправляйте пароли.`,
+🔐 Админ может попросить доступ к акаунту.`,
         keyboard: cancelKeyboard()
       });
       return;
